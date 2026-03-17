@@ -12,6 +12,9 @@ const MainRouter = () => {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/*" element={<Err404 />} />
 
+
+
+
         {/* <Route path=":id" element={<Blog />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/b2b" element={<B2b2 />} />

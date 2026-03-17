@@ -1,7 +1,8 @@
-import { useState } from "react";
+import {useState } from "react";
 import { useAssets } from "../../../../hooks/useAssets";
 import Layout from "../../layouts/layout";
 import SidebarWidget from "../../components/SidebarWidget";
+import { usePageContent } from "../../../../api/apiHooks";
 
 const ConsultationForm = () => {
   const [form, setForm] = useState({
@@ -87,6 +88,22 @@ const ConsultationForm = () => {
 
 const BlogPage = () => {
   const { images } = useAssets();
+
+  const { data, isLoading, error } = usePageContent("/quebec-experience-class");
+
+  console.log("Blog Data", data);
+
+  // useEffect(() => {
+  //   fetch("https://drupal.thekahanikaars.com/api/menu_items/main", {
+  //     method: "OPTIONS",
+  //   })
+  //     .then((res) => console.log("res", res))
+  //     .catch((err) => console.log("err", err));
+  // }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading page</p>;
+
   return (
     <Layout>
       <div className="py-14"></div>

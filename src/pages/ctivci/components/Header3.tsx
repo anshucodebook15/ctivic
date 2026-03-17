@@ -12,9 +12,10 @@ const Header3 = () => {
   const { images } = useAssets();
 
   // const { data, isLoading, error } = useHomepage();
-  const { data } = useHomepage();
+  const { data, error } = useHomepage();
 
   console.log("Client Data", data);
+  console.log("Client error", error);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,12 +81,14 @@ const Header3 = () => {
                             {sub?.below && (
                               <ul className="space-y-1 text-[14px] font-body text-gray-600">
                                 {sub?.below.map((child: any, k: number) => (
-                                  <li
-                                    key={k}
-                                    className="cursor-pointer hover:text-primary transition"
-                                  >
-                                    {child.title}
-                                  </li>
+                                  <Link to={"/blog"}>
+                                    <li
+                                      key={k}
+                                      className="cursor-pointer hover:text-primary transition"
+                                    >
+                                      {child.title}
+                                    </li>
+                                  </Link>
                                 ))}
                               </ul>
                             )}
