@@ -1,0 +1,214 @@
+/* Tailwind */
+@import "tailwindcss";
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+@theme {
+  /* Brand Colors */
+
+  --color-primary: #ed1b2f;
+  --color-primary-dark: #9d0a0e;
+  --color-primary-light: #fff6f6;
+
+  --color-secondary: #1f2937;
+  --color-secondary-light: #374151;
+
+  --color-accent: #f59e0b;
+
+  /* Background */
+
+  /* --color-bg: #f5f6f7; */
+  --color-surface: #ffffff;
+
+  /* Text */
+
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b7280;
+  --color-text-light: #9ca3af;
+
+  /* Borders */
+
+  --color-border: #e5e7eb;
+
+  /* Shadows */
+
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+  /* Fonts */
+
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Google Sans", sans-serif;
+
+  /* Radius */
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+}
+
+/* =========================
+   ROOT
+========================= */
+
+:root {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+@utility container-main {
+  @apply max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8;
+}
+
+@utility section-padding {
+  @apply py-16 md:py-24;
+}
+
+@utility card {
+  @apply bg-white rounded-xl shadow-soft p-6;
+}
+
+@utility btn-primary {
+  @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition;
+}
+
+@utility btn-outline {
+  @apply border border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition;
+}
+
+@utility text-muted {
+  color: var(--color-text-secondary);
+}
+
+/* =========================
+   TYPOGRAPHY SYSTEM
+========================= */
+
+@layer components {
+  .site-theme {
+    background-color: rgb(253, 253, 253);
+    h1 {
+      @apply text-[36px] md:text-[52px] font-bold leading-tight;
+      font-family: var(--font-heading);
+    }
+
+    h2 {
+      @apply text-[30px] md:text-[40px] font-semibold;
+      font-family: var(--font-heading);
+    }
+
+    h3 {
+      @apply text-[22px] md:text-[26px] font-semibold;
+      font-family: var(--font-heading);
+    }
+
+    h4 {
+      @apply text-[18px] md:text-[20px] font-semibold;
+      font-family: var(--font-heading);
+    }
+
+    p {
+      @apply text-[16px] leading-7 text-text-secondary;
+      font-family: var(--font-body);
+    }
+
+    small {
+      @apply text-[14px] text-text-light;
+      font-family: var(--font-body);
+    }
+
+    .menu {
+      @apply text-[15px] font-medium text-secondary hover:text-primary transition;
+      font-family: var(--font-body);
+    }
+
+    .section-title {
+      @apply text-[32px] md:text-[42px] font-bold text-secondary;
+      font-family: var(--font-heading);
+    }
+
+    .section-subtitle {
+      @apply text-[16px] text-text-secondary max-w-[600px];
+      font-family: var(--font-body);
+    }
+
+    .contain {
+      @apply xl:max-w-7xl lg:max-w-6xl mx-auto px-6 lg:px-6;
+    }
+
+    .forminp {
+      @apply w-full p-2 rounded-sm border bg-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500;
+    }
+
+    .section-space-y {
+      @apply py-18 md:py-20 lg:py-20 px-6 md:px-6 lg:px-6;
+    }
+  }
+}
+
+/* =========================
+   SPECIAL COMPONENT STYLES
+========================= */
+
+.hero-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+}
+
+.red-gradient {
+  background: linear-gradient(90deg, #e53935 0%, #c62828 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
