@@ -1,10 +1,31 @@
 import { useState } from "react";
-import './BlogPage.css'
+import "./BlogPage.css";
 import { useAssets } from "../../../../hooks/useAssets";
 import Layout from "../../layouts/layout";
 import SidebarWidget from "../../components/SidebarWidget";
 import { usePageContent } from "../../../../api/apiHooks";
 import { useParams } from "react-router";
+
+const Loader = () => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-white/70 z-50">
+
+      <div className="flex flex-col items-center gap-4">
+
+        {/* Spinner */}
+        <div className="w-10 h-10 border-4 border-gray-200 border-t-red-600 rounded-full animate-spin" />
+
+        {/* Optional Text */}
+        <p className="text-sm text-gray-600 font-medium">
+          Loading...
+        </p>
+
+      </div>
+
+    </div>
+  );
+};
+
 
 
 const ConsultationForm = () => {
@@ -32,15 +53,15 @@ const ConsultationForm = () => {
 
   return (
     <div className="bg-gray-100 p-6 md:p-8 rounded-xl shadow-sm w-full">
-      <h3 className="text-xl font-semibold mb-2">
+      <h3 className="text-xl leading-[1.2] font-semibold mb-4">
         Get Your Imigration Passport Now
       </h3>
 
-      <p className="text-gray-600 text-sm mb-6">
+      {/* <p className="text-gray-600 text-sm mb-6">
         We at Nationwide Visas are determined to make your dream possible.
-      </p>
+      </p> */}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3">
         <input
           type="text"
           name="name"
@@ -105,7 +126,7 @@ const BlogPage = () => {
   // console.log("Blog Data", data);
   console.log("Slug", slug);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error loading page content.</p>;
 
   return (
@@ -167,8 +188,12 @@ const BlogPage = () => {
                 Citizenship & Status Extensions.
               </p> */}
 
-
-              <div className="ck-content" dangerouslySetInnerHTML={{ __html: data?.data?.attributes?.body?.value }} />
+              <div
+                className="ck-content"
+                dangerouslySetInnerHTML={{
+                  __html: data?.data?.attributes?.body?.value,
+                }}
+              />
             </div>
 
             {/* RIGHT FORM */}

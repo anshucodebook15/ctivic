@@ -51,7 +51,9 @@ const Header3 = () => {
               <li key={i} className=" group">
                 {/* Main link */}
                 <div className="flex items-center gap-1 cursor-pointer py-1 hover:text-primary transition">
-                  {item.title}
+                  <Link to={item?.relative === "" ? "" : item?.relative}>
+                    {item.title}
+                  </Link>
 
                   {item?.below && (
                     <ChevronDown

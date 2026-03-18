@@ -13,6 +13,7 @@ const Layout = ({ children }: any) => {
         <Header3 />
         {children}
 
+        <div className="py-10"></div>
         <Footer2 />
       </div>
     </>
