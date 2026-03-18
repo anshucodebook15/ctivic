@@ -1,8 +1,11 @@
-import {useState } from "react";
+import { useState } from "react";
+import './BlogPage.css'
 import { useAssets } from "../../../../hooks/useAssets";
 import Layout from "../../layouts/layout";
 import SidebarWidget from "../../components/SidebarWidget";
 import { usePageContent } from "../../../../api/apiHooks";
+import { useParams } from "react-router";
+
 
 const ConsultationForm = () => {
   const [form, setForm] = useState({
@@ -88,21 +91,22 @@ const ConsultationForm = () => {
 
 const BlogPage = () => {
   const { images } = useAssets();
+  const { slug } = useParams();
 
-  const { data, isLoading, error } = usePageContent("/quebec-experience-class");
+  // const { data, isLoading, error } = usePageContent("/quebec-experience-class");
+  const { data, isLoading, error } = usePageContent(slug || "");
 
-  console.log("Blog Data", data);
+  // const [pageData, setPageData] = useState<any>({
+  //   title: data?.data?.attributes?.title || "",
+  //   body: data?.data?.attributes?.body?.value || "",
+  //   tag: data?.data?.attributes?.tag || ""
+  // });
 
-  // useEffect(() => {
-  //   fetch("https://drupal.thekahanikaars.com/api/menu_items/main", {
-  //     method: "OPTIONS",
-  //   })
-  //     .then((res) => console.log("res", res))
-  //     .catch((err) => console.log("err", err));
-  // }, []);
+  // console.log("Blog Data", data);
+  console.log("Slug", slug);
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading page</p>;
+  if (error) return <p>Error loading page content.</p>;
 
   return (
     <Layout>
@@ -139,10 +143,10 @@ const BlogPage = () => {
             {/* LEFT CONTENT */}
             <div className=" max-w-3xl lg:col-span-2 text-[17px] font-body px-8">
               <h2 className="text-3xl font-heading md:text-2xl font-semibold mb-6">
-                Bring Your Family To Canada
+                {data?.data?.attributes?.title}
               </h2>
 
-              <p className="text-gray-700 leading-relaxed">
+              {/* <p className="text-gray-700 leading-relaxed">
                 Looking for Licensed Canadian Immigration Consultants? RightWay
                 Canada Immigration Services is a Top Rated Canadian immigration
                 firm with an immigration office located in Toronto, Ontario.
@@ -161,7 +165,10 @@ const BlogPage = () => {
                 </span>
                 , Work & Study Permits, Visitor & Super Visas, Canadian
                 Citizenship & Status Extensions.
-              </p>
+              </p> */}
+
+
+              <div className="ck-content" dangerouslySetInnerHTML={{ __html: data?.data?.attributes?.body?.value }} />
             </div>
 
             {/* RIGHT FORM */}
@@ -177,3 +184,11 @@ const BlogPage = () => {
 };
 
 export default BlogPage;
+
+// useEffect(() => {
+//   fetch("https://drupal.thekahanikaars.com/api/menu_items/main", {
+//     method: "OPTIONS",
+//   })
+//     .then((res) => console.log("res", res))
+//     .catch((err) => console.log("err", err));
+// }, []);

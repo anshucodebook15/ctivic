@@ -263,10 +263,10 @@ const Hero = () => {
         {/* RIGHT IMAGE */}
         <div className="relative flex justify-center lg:justify-end">
           {/* <HeroForm /> */}
-        <img
-          src={images.torento}
-          className=" top-20 right-0 z-2 max-w-180 w-full object-contain"
-        />
+          <img
+            src={images.torento}
+            className=" top-20 right-0 z-2 max-w-180 w-full object-contain"
+          />
         </div>
 
       </div>

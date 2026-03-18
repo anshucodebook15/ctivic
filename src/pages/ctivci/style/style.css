@@ -179,6 +179,72 @@ body {
   }
 }
 
+@layer components {
+  .ck-content {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .ck-content h1 {
+    @apply text-4xl md:text-3xl font-heading font-semibold mb-6 text-gray-900;
+  }
+
+  .ck-content h2 {
+    @apply text-3xl md:text-2xl font-heading font-semibold mb-6 text-gray-900;
+  }
+
+  .ck-content h3 {
+    @apply text-2xl md:text-xl font-heading font-semibold mb-5 text-gray-900;
+  }
+
+  .ck-content h4 {
+    @apply text-xl font-heading font-semibold mb-4 text-gray-900;
+  }
+
+  .ck-content p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+
+  .ck-content a {
+    @apply text-red-600 underline hover:text-red-700 transition;
+  }
+
+  .ck-content strong {
+    @apply font-semibold text-gray-900;
+  }
+
+  .ck-content ul {
+    @apply list-disc pl-6 mb-4;
+  }
+
+  .ck-content ol {
+    @apply list-decimal pl-6 mb-4;
+  }
+
+  .ck-content li {
+    @apply mb-2;
+  }
+
+  .ck-content blockquote {
+    @apply border-l-4 border-red-600 pl-4 italic text-gray-600 my-6;
+  }
+
+  .ck-content img {
+    @apply rounded-lg my-6;
+  }
+
+  .ck-content table {
+    @apply w-full border border-gray-200 my-6;
+  }
+
+  .ck-content th {
+    @apply bg-gray-100 text-left p-3 font-semibold;
+  }
+
+  .ck-content td {
+    @apply p-3 border-t;
+  }
+}
+
 /* =========================
    SPECIAL COMPONENT STYLES
 ========================= */

@@ -33,9 +33,8 @@ const Header3 = () => {
 
   return (
     <header
-      className={`fixed left-0 w-full z-10 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2 top-0" : " py-4 top-10"
-      }`}
+      className={`fixed left-0 w-full z-10 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-2 top-0" : " py-4 top-10"
+        }`}
     >
       <div className="contain flex items-center justify-between px-6 transition-all duration-300">
         {/* Logo */}
@@ -81,7 +80,7 @@ const Header3 = () => {
                             {sub?.below && (
                               <ul className="space-y-1 text-[14px] font-body text-gray-600">
                                 {sub?.below.map((child: any, k: number) => (
-                                  <Link to={"/blog"}>
+                                  <Link to={child?.relative}>
                                     <li
                                       key={k}
                                       className="cursor-pointer hover:text-primary transition"
@@ -123,9 +122,8 @@ const Header3 = () => {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[320px] bg-white  shadow-2xl transform transition-transform duration-300 z-50 ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[320px] bg-white  shadow-2xl transform transition-transform duration-300 z-50 ${mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-b-gray-200">
@@ -151,9 +149,8 @@ const Header3 = () => {
                 {item.below && (
                   <ChevronDown
                     size={18}
-                    className={`transition ${
-                      openMenu === i ? "rotate-180 text-primary" : ""
-                    }`}
+                    className={`transition ${openMenu === i ? "rotate-180 text-primary" : ""
+                      }`}
                   />
                 )}
               </div>
@@ -174,9 +171,8 @@ const Header3 = () => {
                         {sub.below && (
                           <ChevronRight
                             size={16}
-                            className={`transition ${
-                              openSubMenu === j ? "rotate-90 text-primary" : ""
-                            }`}
+                            className={`transition ${openSubMenu === j ? "rotate-90 text-primary" : ""
+                              }`}
                           />
                         )}
                       </div>
