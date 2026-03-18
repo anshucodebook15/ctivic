@@ -26,14 +26,14 @@ const Footer2 = () => {
           Connect With Us On Social Media
         </p>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center md:gap-4 gap-2">
           {social.map((item, index) => {
             const Icon = item.icon;
             return (
               <a
                 key={index}
                 href={item.link}
-                className="w-16 h-16 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-primary hover:text-white hover:scale-105 transition"
+                className="md:w-16 md:h-16 w-14 h-14 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-primary hover:text-white hover:scale-105 transition"
               >
                 <Icon size={30} strokeWidth={1.5} />
               </a>

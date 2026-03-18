@@ -123,7 +123,7 @@ const BlogPage = () => {
   //   tag: data?.data?.attributes?.tag || ""
   // });
 
-  // console.log("Blog Data", data);
+  console.log("Blog Data", data);
   console.log("Slug", slug);
 
   if (isLoading) return <Loader />;
@@ -139,7 +139,7 @@ const BlogPage = () => {
             {/* LEFT TEXT */}
             <div className="px-8 py-14 md:py-14">
               <h1 className="text-3xl md:text-3xl font-semibold mb-2">
-                Citizenship Consultation
+               {data?.data?.attributes?.field_cat || "Add Cat"}
               </h1>
 
               <p className="text-sm leading-6 opacity-90 text-white">

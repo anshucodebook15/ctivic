@@ -268,7 +268,6 @@ const Hero = () => {
             className=" top-20 right-0 z-2 max-w-180 w-full object-contain"
           />
         </div>
-
       </div>
     </section>
   );
