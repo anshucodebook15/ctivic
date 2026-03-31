@@ -5,28 +5,21 @@ import Layout from "../../layouts/layout";
 import SidebarWidget from "../../components/SidebarWidget";
 import { usePageContent } from "../../../../api/apiHooks";
 import { useParams } from "react-router";
+import { getFeaturedImage } from "../../../../api/apiClient";
 
 const Loader = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-white/70 z-50">
-
       <div className="flex flex-col items-center gap-4">
-
         {/* Spinner */}
         <div className="w-10 h-10 border-4 border-gray-200 border-t-red-600 rounded-full animate-spin" />
 
         {/* Optional Text */}
-        <p className="text-sm text-gray-600 font-medium">
-          Loading...
-        </p>
-
+        <p className="text-sm text-gray-600 font-medium">Loading...</p>
       </div>
-
     </div>
   );
 };
-
-
 
 const ConsultationForm = () => {
   const [form, setForm] = useState({
@@ -112,10 +105,21 @@ const ConsultationForm = () => {
 
 const BlogPage = () => {
   const { images } = useAssets();
-  const { slug } = useParams();
+  const { category, slug } = useParams();
 
   // const { data, isLoading, error } = usePageContent("/quebec-experience-class");
-  const { data, isLoading, error } = usePageContent(slug || "");
+  const { data, isLoading, error } = usePageContent(
+    `${category}/${slug}` || "",
+  );
+
+  const pageData = (data: any) => {
+    return {
+      heading_title: data?.data?.attributes?.field_cat || "",
+      title: data?.data?.attributes?.title || "",
+      featured_image: getFeaturedImage(data),
+      body: data?.data?.attributes?.body?.value || "",
+    };
+  };
 
   // const [pageData, setPageData] = useState<any>({
   //   title: data?.data?.attributes?.title || "",
@@ -124,7 +128,7 @@ const BlogPage = () => {
   // });
 
   console.log("Blog Data", data);
-  console.log("Slug", slug);
+  console.log("Slug", slug, category);
 
   if (isLoading) return <Loader />;
   if (error) return <p>Error loading page content.</p>;
@@ -139,7 +143,7 @@ const BlogPage = () => {
             {/* LEFT TEXT */}
             <div className="px-8 py-14 md:py-14">
               <h1 className="text-3xl md:text-3xl font-semibold mb-2">
-               {data?.data?.attributes?.field_cat || "Add Cat"}
+                {pageData(data).heading_title || "Add Cat"}
               </h1>
 
               <p className="text-sm leading-6 opacity-90 text-white">
@@ -149,8 +153,14 @@ const BlogPage = () => {
 
             {/* RIGHT IMAGE */}
             <div className="h-[200px] md:h-[300px] lg:h-[200px] md:mr-[-50px]">
-              <img
+              {/* <img
                 src={images.bannerpair}
+                alt="students"
+                className="w-full h-full object-cover"
+              /> */}
+
+              <img
+                src={pageData(data).featured_image || images.bannerpair}
                 alt="students"
                 className="w-full h-full object-cover"
               />
@@ -164,34 +174,20 @@ const BlogPage = () => {
             {/* LEFT CONTENT */}
             <div className=" max-w-3xl lg:col-span-2 text-[17px] font-body px-8">
               <h2 className="text-3xl font-heading md:text-2xl font-semibold mb-6">
-                {data?.data?.attributes?.title}
+                {pageData(data).title || "Add Title"}
               </h2>
 
-              {/* <p className="text-gray-700 leading-relaxed">
-                Looking for Licensed Canadian Immigration Consultants? RightWay
-                Canada Immigration Services is a Top Rated Canadian immigration
-                firm with an immigration office located in Toronto, Ontario.
-              </p>
-
-              <p className="text-gray-700 leading-relaxed mt-4">
-                Our experienced team of{" "}
-                <span className="text-red-600 underline">
-                  immigration professionals
-                </span>{" "}
-                along with highly knowledgeable staff, is here to assist you
-                with Express Entry & PR Applications, OINP & Business
-                Immigration, Family &{" "}
-                <span className="text-red-600 underline">
-                  Spousal Sponsorship
-                </span>
-                , Work & Study Permits, Visitor & Super Visas, Canadian
-                Citizenship & Status Extensions.
-              </p> */}
+              {/* <div
+                className="ck-content"
+                dangerouslySetInnerHTML={{
+                  __html: data?.data?.attributes?.body?.value,
+                }}
+              /> */}
 
               <div
                 className="ck-content"
                 dangerouslySetInnerHTML={{
-                  __html: data?.data?.attributes?.body?.value,
+                  __html: pageData(data).body,
                 }}
               />
             </div>

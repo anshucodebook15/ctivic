@@ -1,21 +1,11 @@
-// import { Layout } from "lucide-react";
-// import Dolci from "./dolci/dolci";
-// import Emergent from "./emergent/Emergent";
-// import Dolci from "./dolci/dolci";
-// import { Rohitdev } from "../layouts/Rohit/Rohitdev";
+
+
+
 
 const Test = () => {
   return (
     <div>
-      {/* <Hero /> */}
-      {/* <GsapCoverflowCarousel /> */}
-      {/* <FloatingSnapButton /> */}
-      {/* <GsapFlow /> */}
-
-      {/* <Rohitdev /> */}
-      {/* <Dolci /> */}
-
-      {/* <Emergent /> */}
+      <h1>Test Page</h1>
 
     </div>
   );

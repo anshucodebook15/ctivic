@@ -1,0 +1,36 @@
+{
+  "topbar": {
+    "contact": {
+      "primaryPhone": "+1 (514) 937-9445",
+      "tollFreeLabel": "or Toll-free (Canada & US)",
+      "tollFreePhone": "+1 (888) 947-9445"
+    },
+    "navigation": [
+      { "label": "Home", "path": "/" },
+      { "label": "About", "path": "/about" },
+      { "label": "Forum", "path": "/forum" },
+      { "label": "News", "path": "/news" },
+      { "label": "Contact", "path": "/contact" }
+    ]
+  },
+  "footer": {
+    "social": {
+      "title": "Connect With Us On Social Media",
+      "links": [
+        { "platform": "facebook", "icon": "facebook", "url": "#" },
+        { "platform": "twitter", "icon": "twitter", "url": "#" },
+        { "platform": "instagram", "icon": "instagram", "url": "#" },
+        { "platform": "linkedin", "icon": "linkedin", "url": "#" },
+        { "platform": "youtube", "icon": "youtube", "url": "#" }
+      ]
+    },
+    "bottomLinks": [
+      { "label": "Privacy Policy", "path": "/privacy-policy" },
+      { "label": "Pricing Terms", "path": "/pricing-terms" },
+      { "label": "Terms of Use", "path": "/terms-of-use" },
+      { "label": "Partnership", "path": "/partnership" },
+      { "label": "Careers", "path": "/careers" },
+      { "label": "Sitemap", "path": "/sitemap" }
+    ]
+  }
+}

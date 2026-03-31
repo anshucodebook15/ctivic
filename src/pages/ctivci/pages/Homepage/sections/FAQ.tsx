@@ -1,32 +1,49 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-
-const faqs = [
-  {
-    question: "How Do I Get Started?",
-    answer:
-      "We are a team of independent and licensed professionals trained to practice the latest immigration law and regulations.",
-  },
-  {
-    question:
-      "Who Is Authorized Representative? How Can RightWay Canada Help Me?",
-    answer:
-      "Authorized representatives are licensed professionals who can provide legal immigration advice and help manage your application.",
-  },
-  {
-    question: "How Many Years of Experience Do You Have?",
-    answer:
-      "We are a team of independent and licensed professionals, trained to practice the latest immigration law and regulations. We offer effective legal advice to individuals and their families to navigate through complex processes involved in immigrating to Canada.",
-  },
-  {
-    question: "Are Government Application Fees Included in Your Prices?",
-    answer:
-      "Government application fees are usually separate from service charges depending on the immigration program.",
-  },
-];
+import { useHomepage } from "../HomepageContext";
 
 const FAQ = () => {
+  const { faq }: any = useHomepage();
   const [open, setOpen] = useState(2);
+
+  console.log("faq data", faq);
+
+  // ✅ Fallback (same structure as API)
+  const fallback = [
+    {
+      title: "How Do I Get Started?",
+      description:
+        "We are a team of independent and licensed professionals trained to practice the latest immigration law and regulations.",
+    },
+    {
+      title:
+        "Who Is Authorized Representative? How Can RightWay Canada Help Me?",
+      description:
+        "Authorized representatives are licensed professionals who can provide legal immigration advice and help manage your application.",
+    },
+    {
+      title: "How Many Years of Experience Do You Have?",
+      description:
+        "We are a team of independent and licensed professionals, trained to practice the latest immigration law and regulations.",
+    },
+    {
+      title: "Are Government Application Fees Included in Your Prices?",
+      description:
+        "Government application fees are usually separate from service charges depending on the immigration program.",
+    },
+  ];
+
+  // ✅ Use API or fallback
+  const faqs =
+    faq?.length > 0
+      ? faq.map((item: any) => ({
+          question: item?.title,
+          answer: item?.description,
+        }))
+      : fallback.map((item) => ({
+          question: item.title,
+          answer: item.description,
+        }));
 
   const toggle = (index: any) => {
     setOpen(open === index ? null : index);
@@ -47,7 +64,7 @@ const FAQ = () => {
 
         {/* FAQ Items */}
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq: any, index: number) => (
             <div
               key={index}
               className="bg-white rounded-xl border border-gray-200 shadow-sm "

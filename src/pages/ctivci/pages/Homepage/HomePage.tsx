@@ -1,5 +1,6 @@
 // import PopupModal from "../../components/PopupModal";
 import Layout from "../../layouts/layout";
+import { HomepageProvider } from "./HomepageContext";
 import About from "./sections/About";
 import ApplyVisa from "./sections/ApplyVisa";
 import AwardsCertificates from "./sections/AwardsCertificates";
@@ -14,18 +15,20 @@ import WhyChoose from "./sections/WhyChoose";
 const HomePage = () => {
   return (
     <>
-      <Layout>
-        {/* <PopupModal /> */}
-        <Hero2 />
-        <Services />
-        <About />
-        <ApplyVisa />
-        <WhyChoose />
-        <FormMigrate />
-        <Testimonial />
-        <AwardsCertificates />
-        <FAQ />
-      </Layout>
+      <HomepageProvider>
+        <Layout>
+          {/* <PopupModal /> */}
+          <Hero2 />
+          <Services />
+          <About />
+          <ApplyVisa />
+          <WhyChoose />
+          <FormMigrate />
+          <Testimonial />
+          <AwardsCertificates />
+          <FAQ />
+        </Layout>
+      </HomepageProvider>
     </>
   );
 };

@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getHomepage, getPageContent } from "./apiClient";
+import { getHomepageContent, getMenuData, getPageContent } from "./apiClient";
 // import { getHomepage } from "../api/homeApi";/
 
-export const useHomepage = () => {
+export const useMenuData = () => {
   return useQuery({
-    queryKey: ["homepage"],
-    queryFn: getHomepage,
+    queryKey: ["menuData"],
+    queryFn: getMenuData,
   });
 };
 
@@ -16,3 +16,14 @@ export const usePageContent = (path: string) => {
     enabled: !!path, // prevents running if path is empty
   });
 };
+
+export const useHomepageContent = () => {
+  return useQuery({
+    queryKey: ["homepage-content"],
+    queryFn: getHomepageContent,
+  });
+};
+
+
+
+

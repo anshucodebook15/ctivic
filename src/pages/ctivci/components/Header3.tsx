@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { useAssets } from "../../../hooks/useAssets";
 import { Link } from "react-router";
-import { useHomepage } from "../../../api/apiHooks";
+import { useMenuData } from "../../../api/apiHooks";
 
 const Header3 = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -12,9 +12,14 @@ const Header3 = () => {
   const { images } = useAssets();
 
   // const { data, isLoading, error } = useHomepage();
-  const { data, error } = useHomepage();
+  const { data, error } = useMenuData();
 
-  console.log("Client Data", data);
+  const cleanUrl = (url: string) => {
+    if (!url) return "/";
+    return url.replace(/^\/drupal/, "");
+  };
+
+  console.log("menu data handling", data);
   console.log("Client error", error);
 
   useEffect(() => {
@@ -46,12 +51,14 @@ const Header3 = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden lg:block">
-          <ul className="flex font-heading items-center text-[16px] gap-6 lg:gap-6 xl:gap-8 text-gray-700 font-medium">
+          <ul className="flex font-heading items-center text-[16px] gap-6 lg:gap-6 xl:gap-6 text-gray-700 font-medium">
             {data?.map((item: any, i: number) => (
               <li key={i} className=" group">
                 {/* Main link */}
-                <div className="flex items-center gap-1 cursor-pointer py-1 hover:text-primary transition">
-                  <Link to={item?.relative === "" ? "" : item?.relative}>
+                <div className="flex items-center  cursor-pointer py-1 hover:text-primary transition">
+                  <Link
+                    to={item?.relative === "" ? "" : cleanUrl(item?.relative)}
+                  >
                     {item.title}
                   </Link>
 
@@ -82,7 +89,7 @@ const Header3 = () => {
                             {sub?.below && (
                               <ul className="space-y-1 text-[14px] font-body text-gray-600">
                                 {sub?.below.map((child: any, k: number) => (
-                                  <Link to={child?.relative}>
+                                  <Link to={cleanUrl(child?.relative)}>
                                     <li
                                       key={k}
                                       className="cursor-pointer hover:text-primary transition"
@@ -146,7 +153,11 @@ const Header3 = () => {
                 className="flex justify-between items-center py-3 text-gray-800 border-b border-b-gray-200 cursor-pointer hover:text-primary"
                 onClick={() => setOpenMenu(openMenu === i ? null : i)}
               >
-                {item.title}
+                <Link
+                  to={cleanUrl(item?.relative === "" ? "" : item?.relative)}
+                >
+                  {item.title}
+                </Link>
 
                 {item.below && (
                   <ChevronDown
@@ -168,7 +179,13 @@ const Header3 = () => {
                           setOpenSubMenu(openSubMenu === j ? null : j)
                         }
                       >
-                        {sub.title}
+                        <Link
+                          to={cleanUrl(
+                            sub?.relative === "" ? "" : sub?.relative,
+                          )}
+                        >
+                          {sub.title}
+                        </Link>
 
                         {sub.below && (
                           <ChevronRight
@@ -187,7 +204,13 @@ const Header3 = () => {
                               key={k}
                               className="hover:text-primary cursor-pointer"
                             >
-                              {child.title}
+                              <Link
+                                to={cleanUrl(
+                                  child?.relative === "" ? "" : child?.relative,
+                                )}
+                              >
+                                {child.title}
+                              </Link>
                             </li>
                           ))}
                         </ul>

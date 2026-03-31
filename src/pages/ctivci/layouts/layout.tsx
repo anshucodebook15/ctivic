@@ -1,7 +1,8 @@
 // import Footer from "../components/Footer";
-import Footer2 from "../components/Footer2";
 // import Header from "../components/Header";
 // import Header2 from "../components/Header2";
+
+import Footer2 from "../components/Footer2";
 import Header3 from "../components/Header3";
 import TopBar from "../components/Topbar";
 

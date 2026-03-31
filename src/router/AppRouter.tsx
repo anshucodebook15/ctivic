@@ -2,14 +2,31 @@ import { BrowserRouter as Router, Route, Routes } from "react-router";
 
 import { BlogPage, HomePage } from "../pages/ctivci";
 import Err404 from "../pages/ctivci/pages/Err404";
+import SingleBlogPage from "../pages/ctivci/pages/Blogpage/SingleBlogPage";
+import Test from "../pages/Test";
+import { useEffect } from "react";
+import { goToLogin } from "../api/apiClient";
 
 const MainRouter = () => {
+  const ExternalRedirect = () => {
+    useEffect(() => {
+      window.location.href = goToLogin();
+    }, []);
+    return <p>Redirecting to Drupal...</p>;
+  };
+
   return (
     <Router>
       <Routes>
         <Route path="/">
           <Route index element={<HomePage />} />
-          <Route path=":slug" element={<BlogPage />} />
+          <Route path=":slug" element={<SingleBlogPage />} />
+
+          {/* Two-level slug */}
+          <Route path=":category/:slug" element={<BlogPage />} />
+
+          <Route path="test" element={<Test />} />
+          <Route path="drupal-login" element={<ExternalRedirect />} />
         </Route>
 
         {/* <Route path="/blog" element={<BlogPage />} /> */}
